@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarSalon.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221124152642_brand-model-equipment relation")]
-    partial class brandmodelequipmentrelation
+    [Migration("20221125194732_basic seed")]
+    partial class basicseed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,50 @@ namespace CarSalon.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5564),
+                            Name = "Audi",
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5568)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5585),
+                            Name = "BMW",
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5586)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5594),
+                            Name = "Fiat",
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5594)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5602),
+                            Name = "Porsche",
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5602)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5610),
+                            Name = "Jeep",
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5610)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5620),
+                            Name = "Mercedes",
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5621)
+                        });
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.EquipmentEntity", b =>
@@ -55,15 +99,175 @@ namespace CarSalon.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DoorsNumber")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("FourWheelDrive")
-                        .HasColumnType("bit");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Equipment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Four Drive Wheel"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Turbo"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Manual Transmission"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Automatic Transmission"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Cabriolet"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "System ABS"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Two doors"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Five doors"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Three doors"
+                        });
+                });
+
+            modelBuilder.Entity("CarSalon.Web.Data.Model_EquipmentEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EquipmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("Model_Equipment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EquipmentId = 9,
+                            ModelId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EquipmentId = 6,
+                            ModelId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EquipmentId = 4,
+                            ModelId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EquipmentId = 7,
+                            ModelId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EquipmentId = 3,
+                            ModelId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EquipmentId = 8,
+                            ModelId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EquipmentId = 4,
+                            ModelId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            EquipmentId = 1,
+                            ModelId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            EquipmentId = 6,
+                            ModelId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            EquipmentId = 8,
+                            ModelId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            EquipmentId = 6,
+                            ModelId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            EquipmentId = 4,
+                            ModelId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            EquipmentId = 6,
+                            ModelId = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            EquipmentId = 7,
+                            ModelId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            EquipmentId = 4,
+                            ModelId = 5
+                        });
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
@@ -82,9 +286,6 @@ namespace CarSalon.Web.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("EquipmentForeignKey")
-                        .HasColumnType("int");
 
                     b.Property<int>("Fuel")
                         .HasColumnType("int");
@@ -109,9 +310,74 @@ namespace CarSalon.Web.Migrations
 
                     b.HasIndex("BrandForeignKey");
 
-                    b.HasIndex("EquipmentForeignKey");
-
                     b.ToTable("Models");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BrandForeignKey = 2,
+                            CarType = 2,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5640),
+                            Fuel = 2,
+                            IsNew = true,
+                            MadeIn = new DateTime(2020, 11, 25, 20, 47, 32, 645, DateTimeKind.Local).AddTicks(5645),
+                            Name = "M850i xDrive Coupé",
+                            Price = 700000.0,
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5640)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BrandForeignKey = 6,
+                            CarType = 1,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5695),
+                            Fuel = 1,
+                            IsNew = true,
+                            MadeIn = new DateTime(2018, 11, 25, 20, 47, 32, 645, DateTimeKind.Local).AddTicks(5696),
+                            Name = "Citaro",
+                            Price = 400000.0,
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5695)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BrandForeignKey = 4,
+                            CarType = 2,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5708),
+                            Fuel = 2,
+                            IsNew = false,
+                            MadeIn = new DateTime(2020, 11, 25, 20, 47, 32, 645, DateTimeKind.Local).AddTicks(5709),
+                            Name = "Cayenne SUV",
+                            Price = 440000.0,
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5708)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BrandForeignKey = 1,
+                            CarType = 2,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5719),
+                            Fuel = 4,
+                            IsNew = true,
+                            MadeIn = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5720),
+                            Name = "Q5 II TFSI e",
+                            Price = 600000.0,
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5720)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BrandForeignKey = 6,
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5727),
+                            Fuel = 1,
+                            IsNew = false,
+                            MadeIn = new DateTime(2017, 11, 25, 20, 47, 32, 645, DateTimeKind.Local).AddTicks(5728),
+                            Name = "Actros",
+                            Price = 400000.0,
+                            UpdatedAt = new DateTime(2022, 11, 25, 19, 47, 32, 645, DateTimeKind.Utc).AddTicks(5728)
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -316,6 +582,25 @@ namespace CarSalon.Web.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CarSalon.Web.Data.Model_EquipmentEntity", b =>
+                {
+                    b.HasOne("CarSalon.Web.Data.EquipmentEntity", "equipment")
+                        .WithMany("ModelEquipments")
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarSalon.Web.Data.ModelEntity", "model")
+                        .WithMany("ModelEquipments")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("equipment");
+
+                    b.Navigation("model");
+                });
+
             modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
                 {
                     b.HasOne("CarSalon.Web.Data.BrandEntity", "Brand")
@@ -324,15 +609,7 @@ namespace CarSalon.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarSalon.Web.Data.EquipmentEntity", "Equipment")
-                        .WithMany("Models")
-                        .HasForeignKey("EquipmentForeignKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Brand");
-
-                    b.Navigation("Equipment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -393,7 +670,12 @@ namespace CarSalon.Web.Migrations
 
             modelBuilder.Entity("CarSalon.Web.Data.EquipmentEntity", b =>
                 {
-                    b.Navigation("Models");
+                    b.Navigation("ModelEquipments");
+                });
+
+            modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
+                {
+                    b.Navigation("ModelEquipments");
                 });
 #pragma warning restore 612, 618
         }

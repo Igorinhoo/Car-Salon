@@ -1,8 +1,36 @@
-﻿@{
+﻿@model HomeIndexVm
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    
+
+  
+</style>
+
+<main class="main">
+@foreach (var item in Model.Brands)
+{
+
+    <div class="single" style="background-color:grey; border:1px solid black">
+        <div class="image" style="background-color:red">
+            IMG
+        </div>
+        @item.Name
+        <div class="dropdown-content">
+            @foreach (var mod in item.Models)
+            {
+                <a asp-controller="Shop" asp-action="Details" asp-route-id="@mod.Id">@mod.Name</a>
+              @*  
+                @foreach (var items in mod.)
+                    {
+                        
+                    }*@
+            }
+        </div>
+        
+    </div>
+}
+</main>

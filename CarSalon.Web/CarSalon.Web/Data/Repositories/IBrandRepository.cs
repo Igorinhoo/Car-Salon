@@ -25,6 +25,8 @@ namespace CarSalon.Web.Data.Repositories
         }
         public bool Add(BrandEntity entity)
         {
+            entity.CreatedAt = DateTime.UtcNow;
+            entity.UpdatedAt = DateTime.UtcNow;
             _dbContext.Brands.Add(entity);
 
             return _dbContext.SaveChanges() > 0;

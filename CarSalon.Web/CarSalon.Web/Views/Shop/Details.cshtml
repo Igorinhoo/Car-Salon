@@ -1,0 +1,35 @@
+﻿@using CarSalon.Web.Data
+@model ModelEntity
+@using CarSalon.Web.Data.Repositories
+@inject IModelEquipmentRepository equRep
+
+@{
+    ViewData["Title"] = "Strona details";
+}
+@*
+@foreach(var item in Model.Equipmentes){
+    @item.Name
+}*@
+
+@Model.Brand
+@Model.Name
+@Model.Fuel
+@Model.Price
+@Model.CarType
+@Model.IsNew
+@Model.ModelEquipments  
+
+@foreach (var item in @equRep.AllForModel(Model.Id))
+{
+    @item.Name   
+}
+<br/>
+@Model.MadeIn
+<br />
+@foreach (var mode in @equRep.All())
+{ 
+    @mode.EquipmentId
+    
+    <br />
+
+}

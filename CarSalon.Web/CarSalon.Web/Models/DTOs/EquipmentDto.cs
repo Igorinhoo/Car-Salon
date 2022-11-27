@@ -5,18 +5,15 @@ namespace CarSalon.Web.Models.DTOs
     public class EquipmentDto
     {
         public int Id { get; set; }
-        public int DoorsNumber { get; set; }
-        public bool FourWheelDrive { get; set; }
+        public string Name { get; set; }
 
-        public ICollection<ModelDto> Models { get; set; }
+        public int ModelForeignKey { get; set; }
 
         public EquipmentDto(EquipmentEntity entity)
         {
             Id = entity.Id;
-            DoorsNumber = entity.DoorsNumber;
-            if(entity.Models != null) { 
-                Models = entity.Models.Select(n => new ModelDto(n)).ToList();
-            }
+            Name = entity.Name;
+        
         }
 
         public EquipmentEntity ParseToEntity()
@@ -24,8 +21,7 @@ namespace CarSalon.Web.Models.DTOs
             return new EquipmentEntity
             {
                 Id = this.Id,
-                DoorsNumber = this.DoorsNumber,
-                FourWheelDrive = this.FourWheelDrive,
+                Name = this.Name,
             };
         }
     }

@@ -4,6 +4,7 @@ using CarSalon.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarSalon.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221125190001_car models-equipment relation")]
+    partial class carmodelsequipmentrelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,50 +45,6 @@ namespace CarSalon.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6385),
-                            Name = "Audi",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6393)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6421),
-                            Name = "BMW",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6421)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6434),
-                            Name = "Fiat",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6435)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6445),
-                            Name = "Porsche",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6446)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6458),
-                            Name = "Jeep",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6458)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6473),
-                            Name = "Mercedes",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6474)
-                        });
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.EquipmentEntity", b =>
@@ -104,53 +62,6 @@ namespace CarSalon.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Equipment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Four Drive Wheel"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Turbo"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Manual Transmission"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Automatic Transmission"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Cabriolet"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "System ABS"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Two doors"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Five doors"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Three doors"
-                        });
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.Model_EquipmentEntity", b =>
@@ -174,98 +85,6 @@ namespace CarSalon.Web.Migrations
                     b.HasIndex("ModelId");
 
                     b.ToTable("Model_Equipment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EquipmentId = 9,
-                            ModelId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EquipmentId = 6,
-                            ModelId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            EquipmentId = 4,
-                            ModelId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            EquipmentId = 7,
-                            ModelId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            EquipmentId = 3,
-                            ModelId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            EquipmentId = 8,
-                            ModelId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            EquipmentId = 4,
-                            ModelId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            EquipmentId = 1,
-                            ModelId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            EquipmentId = 6,
-                            ModelId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            EquipmentId = 8,
-                            ModelId = 4
-                        },
-                        new
-                        {
-                            Id = 11,
-                            EquipmentId = 6,
-                            ModelId = 4
-                        },
-                        new
-                        {
-                            Id = 12,
-                            EquipmentId = 4,
-                            ModelId = 4
-                        },
-                        new
-                        {
-                            Id = 13,
-                            EquipmentId = 6,
-                            ModelId = 5
-                        },
-                        new
-                        {
-                            Id = 14,
-                            EquipmentId = 7,
-                            ModelId = 5
-                        },
-                        new
-                        {
-                            Id = 15,
-                            EquipmentId = 4,
-                            ModelId = 5
-                        });
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
@@ -277,6 +96,9 @@ namespace CarSalon.Web.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BrandForeignKey")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<int>("CarType")
@@ -306,115 +128,9 @@ namespace CarSalon.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandForeignKey");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Models");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BrandForeignKey = 2,
-                            CarType = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6495),
-                            Fuel = 2,
-                            IsNew = true,
-                            MadeIn = new DateTime(2020, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6503),
-                            Name = "M850i xDrive Coupé",
-                            Price = 700000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6496)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BrandForeignKey = 6,
-                            CarType = 1,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6567),
-                            Fuel = 1,
-                            IsNew = true,
-                            MadeIn = new DateTime(2018, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6569),
-                            Name = "Citaro",
-                            Price = 400000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6568)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BrandForeignKey = 4,
-                            CarType = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6585),
-                            Fuel = 2,
-                            IsNew = false,
-                            MadeIn = new DateTime(2020, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6586),
-                            Name = "Cayenne SUV",
-                            Price = 440000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6586)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BrandForeignKey = 1,
-                            CarType = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6600),
-                            Fuel = 4,
-                            IsNew = true,
-                            MadeIn = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6602),
-                            Name = "Q5 II TFSI e",
-                            Price = 600000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6601)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BrandForeignKey = 6,
-                            CarType = 0,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6613),
-                            Fuel = 1,
-                            IsNew = false,
-                            MadeIn = new DateTime(2017, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6615),
-                            Name = "Actros",
-                            Price = 400000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6614)
-                        });
-                });
-
-            modelBuilder.Entity("CarSalon.Web.Data.OrderEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CarType")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsNew")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -642,7 +358,7 @@ namespace CarSalon.Web.Migrations
                 {
                     b.HasOne("CarSalon.Web.Data.BrandEntity", "Brand")
                         .WithMany("Models")
-                        .HasForeignKey("BrandForeignKey")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

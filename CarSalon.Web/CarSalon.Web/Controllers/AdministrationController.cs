@@ -8,5 +8,9 @@ namespace CarSalon.Web.Controllers
         {
             return View();
         }
+        public IActionResult Statistics()
+        {
+            return View();
+        }
     }
 }

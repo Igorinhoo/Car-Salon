@@ -4,11 +4,12 @@
     public class EquipmentEntity
     {
         public int Id { get; set; }
-        public int DoorsNumber { get; set; } 
-        public bool FourWheelDrive { get; set; }
+        public string Name { get; set; }
 
-        public ICollection<ModelEntity> Models{ get; set; }
-        
+ 
+        public ICollection<Model_EquipmentEntity> ModelEquipments { get; set; }
+
+
 
     }
 }

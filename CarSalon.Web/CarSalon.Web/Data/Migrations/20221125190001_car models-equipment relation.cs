@@ -4,13 +4,13 @@
 
 namespace CarSalon.Web.Migrations
 {
-    public partial class carequipment : Migration
+    public partial class carmodelsequipmentrelation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_EquipmentEntity_Models_ModelId",
-                table: "EquipmentEntity");
+                name: "FK_Model_Equipment_EquipmentEntity_EquipmentId",
+                table: "Model_Equipment");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_EquipmentEntity",
@@ -20,21 +20,16 @@ namespace CarSalon.Web.Migrations
                 name: "EquipmentEntity",
                 newName: "Equipment");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_EquipmentEntity_ModelId",
-                table: "Equipment",
-                newName: "IX_Equipment_ModelId");
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Equipment",
                 table: "Equipment",
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Equipment_Models_ModelId",
-                table: "Equipment",
-                column: "ModelId",
-                principalTable: "Models",
+                name: "FK_Model_Equipment_Equipment_EquipmentId",
+                table: "Model_Equipment",
+                column: "EquipmentId",
+                principalTable: "Equipment",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -42,8 +37,8 @@ namespace CarSalon.Web.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Equipment_Models_ModelId",
-                table: "Equipment");
+                name: "FK_Model_Equipment_Equipment_EquipmentId",
+                table: "Model_Equipment");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Equipment",
@@ -53,21 +48,16 @@ namespace CarSalon.Web.Migrations
                 name: "Equipment",
                 newName: "EquipmentEntity");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_Equipment_ModelId",
-                table: "EquipmentEntity",
-                newName: "IX_EquipmentEntity_ModelId");
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_EquipmentEntity",
                 table: "EquipmentEntity",
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_EquipmentEntity_Models_ModelId",
-                table: "EquipmentEntity",
-                column: "ModelId",
-                principalTable: "Models",
+                name: "FK_Model_Equipment_EquipmentEntity_EquipmentId",
+                table: "Model_Equipment",
+                column: "EquipmentId",
+                principalTable: "EquipmentEntity",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }

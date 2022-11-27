@@ -4,7 +4,7 @@ namespace CarSalon.Web.Data.Repositories
 {
     public interface IEquipmentRepository
     {
-        ICollection<EquipmentEntity> All();
+        ICollection<EquipmentEntity> All(int modelId);
         int Count();
         EquipmentEntity One(int id);
         bool Add(EquipmentEntity entity);
@@ -30,12 +30,9 @@ namespace CarSalon.Web.Data.Repositories
             return _dbContext.SaveChanges() > 0;
         }
 
-        public ICollection<EquipmentEntity> All()
+        public ICollection<EquipmentEntity> All(int modelId)
         {
-            return _dbContext.Equipment
-                .Include(n => n.Models)
-                .Select(n => n)
-                .ToList();
+            return _dbContext.Model_Equipment.Where(p => p.ModelId == modelId).Select(n => n.equipment).ToList();
         }
 
         public int Count()

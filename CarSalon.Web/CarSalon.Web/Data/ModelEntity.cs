@@ -5,9 +5,9 @@
         Gas,
         Diesel,
         Petrol,
-        Electric
+        Electric,
+        Hybrid
     }
-
     public enum CarType
     {
         Truck,
@@ -28,8 +28,7 @@
         public BrandEntity Brand { get; set; }
         public int BrandForeignKey { get; set; }
 
-        public EquipmentEntity Equipment{ get; set; }
-        public int EquipmentForeignKey { get; set; }
+        public ICollection<Model_EquipmentEntity> ModelEquipments { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

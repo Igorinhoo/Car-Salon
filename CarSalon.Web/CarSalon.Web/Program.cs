@@ -1,4 +1,6 @@
 using CarSalon.Web.Data;
+using CarSalon.Web.Data.Repositories;
+using CarSalon.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,16 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddTransient<IBrandRepository, BrandRepository>();
+builder.Services.AddTransient<IModelRepository, ModelRepository>();
+builder.Services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+builder.Services.AddTransient<IModelEquipmentRepository, ModelEquipmentRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+
+builder.Services.AddTransient<IShopViewModelProvider, ShopViewModelProvider>();
+builder.Services.AddTransient<IDetailsViewModelProvider, DetailsViewModelProvider>();
+
 
 var app = builder.Build();
 

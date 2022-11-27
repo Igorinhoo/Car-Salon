@@ -12,6 +12,8 @@ namespace CarSalon.Web.Models.DTOs
         public Fuel Fuel { get; set; }
         public CarType CarType { get; set; }
         public int BrandForeignKey { get; set; }
+
+        public ICollection<EquipmentDto> Equipments { get; set; }
         public ModelDto(ModelEntity entity)
         {
             Id = entity.Id;
@@ -22,6 +24,10 @@ namespace CarSalon.Web.Models.DTOs
             Fuel = entity.Fuel;
             CarType = entity.CarType;
             BrandForeignKey = entity.BrandForeignKey;
+       /*     if (entity.ModelEquipments != null)
+            {
+                Equipments = entity.ModelEquipments.Select(n => new EquipmentDto(n)).ToList();
+            }*/
         }
 
         public ModelEntity ParseToEntity()

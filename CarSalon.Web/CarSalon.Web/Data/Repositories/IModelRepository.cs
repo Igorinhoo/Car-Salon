@@ -6,6 +6,9 @@ namespace CarSalon.Web.Data.Repositories
     {
         ICollection<ModelEntity> All();
         ICollection<ModelEntity> All(int parentId);
+
+/*        ICollection<EquipmentEntity> AllEquipments(int Id);*/
+
         int Count();
         int Count(int parentId);
         ModelEntity One(int id);
@@ -26,14 +29,17 @@ namespace CarSalon.Web.Data.Repositories
         }
         public bool Add(ModelEntity entity)
         {
+            entity.CreatedAt = DateTime.UtcNow;
+            entity.UpdatedAt = DateTime.UtcNow;
             _dbContext.Models.Add(entity);
-
+            
             return _dbContext.SaveChanges() > 0;
         }
 
         public ICollection<ModelEntity> All()
         {
             return _dbContext.Models
+                .Include(n => n.ModelEquipments)
                 .Select(n => n)
                 .ToList();
         }
@@ -47,7 +53,7 @@ namespace CarSalon.Web.Data.Repositories
 
         public int Count()
         {
-            return _dbContext.Brands.Count();
+            return _dbContext.Models.Count();
         }
 
 
@@ -56,5 +62,13 @@ namespace CarSalon.Web.Data.Repositories
             return _dbContext.Models.Where(n => n.BrandForeignKey == parentId).Count();
 
         }
+/*
+        public ICollection<EquipmentEntity> AllEquipments(int Id)
+        {
+            var equ = ;
+
+            var eq = equ;
+            return eq;
+        }*/
     }
 }
