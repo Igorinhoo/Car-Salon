@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarSalon.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221124105556_car brands")]
-    partial class carbrands
+    [Migration("20221130133535_relations")]
+    partial class relations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,10 @@ namespace CarSalon.Web.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -55,10 +59,24 @@ namespace CarSalon.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DoorsNumber")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Equipment");
+                });
+
+            modelBuilder.Entity("CarSalon.Web.Data.Model_EquipmentEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ModelForeignKey")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<int>("ModelId")
@@ -66,9 +84,11 @@ namespace CarSalon.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EquipmentId");
+
                     b.HasIndex("ModelId");
 
-                    b.ToTable("EquipmentEntity");
+                    b.ToTable("Model_Equipment");
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
@@ -82,14 +102,18 @@ namespace CarSalon.Web.Migrations
                     b.Property<int>("BrandForeignKey")
                         .HasColumnType("int");
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CarType")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Fuel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsNew")
                         .HasColumnType("bit");
@@ -107,11 +131,52 @@ namespace CarSalon.Web.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("ViewNumber")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("BrandForeignKey");
 
-                    b.ToTable("ModelEntity");
+                    b.ToTable("Models");
+                });
+
+            modelBuilder.Entity("CarSalon.Web.Data.OrderEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CarType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsNew")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -316,22 +381,30 @@ namespace CarSalon.Web.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CarSalon.Web.Data.EquipmentEntity", b =>
+            modelBuilder.Entity("CarSalon.Web.Data.Model_EquipmentEntity", b =>
                 {
-                    b.HasOne("CarSalon.Web.Data.ModelEntity", "Model")
-                        .WithMany("Equipment")
+                    b.HasOne("CarSalon.Web.Data.EquipmentEntity", "equipment")
+                        .WithMany("ModelEquipments")
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarSalon.Web.Data.ModelEntity", "model")
+                        .WithMany("ModelEquipments")
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Model");
+                    b.Navigation("equipment");
+
+                    b.Navigation("model");
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
                 {
                     b.HasOne("CarSalon.Web.Data.BrandEntity", "Brand")
                         .WithMany("Models")
-                        .HasForeignKey("BrandId")
+                        .HasForeignKey("BrandForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -394,9 +467,14 @@ namespace CarSalon.Web.Migrations
                     b.Navigation("Models");
                 });
 
+            modelBuilder.Entity("CarSalon.Web.Data.EquipmentEntity", b =>
+                {
+                    b.Navigation("ModelEquipments");
+                });
+
             modelBuilder.Entity("CarSalon.Web.Data.ModelEntity", b =>
                 {
-                    b.Navigation("Equipment");
+                    b.Navigation("ModelEquipments");
                 });
 #pragma warning restore 612, 618
         }

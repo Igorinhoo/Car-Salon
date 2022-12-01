@@ -5,7 +5,7 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
         public CarType CarType { get; set; } = CarType.Passenger;
         public double Price { get; set; }
         public Boolean IsNew { get; set; } = true;

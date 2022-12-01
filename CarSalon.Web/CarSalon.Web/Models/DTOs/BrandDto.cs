@@ -7,12 +7,14 @@ namespace CarSalon.Web.Models.DTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ImgUrl { get; set; }
         public ICollection<ModelDto> Models { get; set; }
 
         public BrandDto(BrandEntity entity)
         {
             Id = entity.Id;
             Name = entity.Name;
+            ImgUrl = entity.ImgUrl;
             if (entity.Models != null)
             {
                 Models = entity.Models.Select(n => new ModelDto(n)).ToList();
@@ -25,7 +27,7 @@ namespace CarSalon.Web.Models.DTOs
             {
                 Id = this.Id,
                 Name = this.Name,
-
+                ImgUrl = this.ImgUrl
             };
         }
     }

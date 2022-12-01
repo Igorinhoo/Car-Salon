@@ -26,6 +26,11 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 builder.Services.AddTransient<IShopViewModelProvider, ShopViewModelProvider>();
 builder.Services.AddTransient<IDetailsViewModelProvider, DetailsViewModelProvider>();
+builder.Services.AddTransient<IStatisticsViewModelProvider, StatisticsViewModelProvider>();
+builder.Services.AddTransient<IModelsViewModelProvider, ModelsViewModelProvider>();
+builder.Services.AddTransient<IOrderListViewModelProvider, OrderListViewModelProvider>();
+builder.Services.AddTransient<IAddViewModelProvider, AddViewModelProvider>();
+builder.Services.AddTransient<IAllThingsViewModelProvider, AllThingsViewModelProvider>();
 
 
 var app = builder.Build();

@@ -6,6 +6,7 @@ namespace CarSalon.Web.Models
     public class ShopDetailsVm
     {
         public ICollection<EquipmentDto> Equipmentes { get; set; }
-        
+        public ModelDto Models { get; set; }
+
     }
 }

@@ -28,7 +28,7 @@ namespace CarSalon.Web.Data.Repositories
             entity.CreatedAt = DateTime.UtcNow;
 
             _dbContext.Order.Add(entity);
-            
+
             return _dbContext.SaveChanges() > 0;
         }
 

@@ -12,12 +12,10 @@ namespace CarSalon.Web.Services
     public class ShopViewModelProvider : IShopViewModelProvider
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IModelRepository _modelRepository;
 
-        public ShopViewModelProvider(IBrandRepository brandRepository, IModelRepository modelRepository)
+        public ShopViewModelProvider(IBrandRepository brandRepository)
         {
             _brandRepository = brandRepository;
-            _modelRepository = modelRepository;
         }
 
         public HomeIndexVm PreperIndexVm()
@@ -26,10 +24,6 @@ namespace CarSalon.Web.Services
                 .All()
                 .Select(n => new BrandDto(n))
                 .ToList();
-
-            var mod = _modelRepository.All().Select(n => new ModelDto(n)).ToList();
-
-
 
             return new HomeIndexVm(){ Brands = brands };
         }

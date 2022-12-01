@@ -33,6 +33,10 @@ namespace CarSalon.Web.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,44 +52,50 @@ namespace CarSalon.Web.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6385),
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8419),
+                            ImgUrl = "https://brandslogos.com/wp-content/uploads/images/large/audi-logo.png",
                             Name = "Audi",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6393)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8421)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6421),
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8441),
+                            ImgUrl = "img/Brands/Bmw .png",
                             Name = "BMW",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6421)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8441)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6434),
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8448),
+                            ImgUrl = "img/Brands/Fiat .png",
                             Name = "Fiat",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6435)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8449)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6445),
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8455),
+                            ImgUrl = "img/Brands/Porsche .png",
                             Name = "Porsche",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6446)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8456)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6458),
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8462),
+                            ImgUrl = "img/Brands/Jeep .png",
                             Name = "Jeep",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6458)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8462)
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6473),
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8471),
+                            ImgUrl = "img/Brands/Mercedes .png",
                             Name = "Mercedes",
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6474)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8471)
                         });
                 });
 
@@ -265,6 +275,78 @@ namespace CarSalon.Web.Migrations
                             Id = 15,
                             EquipmentId = 4,
                             ModelId = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            EquipmentId = 3,
+                            ModelId = 7
+                        },
+                        new
+                        {
+                            Id = 17,
+                            EquipmentId = 1,
+                            ModelId = 7
+                        },
+                        new
+                        {
+                            Id = 18,
+                            EquipmentId = 1,
+                            ModelId = 8
+                        },
+                        new
+                        {
+                            Id = 19,
+                            EquipmentId = 4,
+                            ModelId = 8
+                        },
+                        new
+                        {
+                            Id = 20,
+                            EquipmentId = 6,
+                            ModelId = 8
+                        },
+                        new
+                        {
+                            Id = 21,
+                            EquipmentId = 8,
+                            ModelId = 8
+                        },
+                        new
+                        {
+                            Id = 22,
+                            EquipmentId = 2,
+                            ModelId = 9
+                        },
+                        new
+                        {
+                            Id = 23,
+                            EquipmentId = 6,
+                            ModelId = 9
+                        },
+                        new
+                        {
+                            Id = 24,
+                            EquipmentId = 9,
+                            ModelId = 9
+                        },
+                        new
+                        {
+                            Id = 25,
+                            EquipmentId = 3,
+                            ModelId = 9
+                        },
+                        new
+                        {
+                            Id = 26,
+                            EquipmentId = 3,
+                            ModelId = 10
+                        },
+                        new
+                        {
+                            Id = 27,
+                            EquipmentId = 8,
+                            ModelId = 10
                         });
                 });
 
@@ -288,6 +370,10 @@ namespace CarSalon.Web.Migrations
                     b.Property<int>("Fuel")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsNew")
                         .HasColumnType("bit");
 
@@ -304,6 +390,9 @@ namespace CarSalon.Web.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("ViewNumber")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandForeignKey");
@@ -315,66 +404,151 @@ namespace CarSalon.Web.Migrations
                         {
                             Id = 1,
                             BrandForeignKey = 2,
-                            CarType = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6495),
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8486),
                             Fuel = 2,
+                            ImgUrl = "img/Models/M850i Coupé.png",
                             IsNew = true,
-                            MadeIn = new DateTime(2020, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6503),
+                            MadeIn = new DateTime(2020, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8492),
                             Name = "M850i xDrive Coupé",
                             Price = 700000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6496)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8487),
+                            ViewNumber = 0L
                         },
                         new
                         {
                             Id = 2,
                             BrandForeignKey = 6,
-                            CarType = 1,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6567),
+                            CarType = 2,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8537),
                             Fuel = 1,
+                            ImgUrl = "img/Models/citaro.png",
                             IsNew = true,
-                            MadeIn = new DateTime(2018, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6569),
+                            MadeIn = new DateTime(2018, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8538),
                             Name = "Citaro",
                             Price = 400000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6568)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8537),
+                            ViewNumber = 0L
                         },
                         new
                         {
                             Id = 3,
                             BrandForeignKey = 4,
-                            CarType = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6585),
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8548),
                             Fuel = 2,
+                            ImgUrl = "img/Models/Cayenne SUV.png",
                             IsNew = false,
-                            MadeIn = new DateTime(2020, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6586),
+                            MadeIn = new DateTime(2020, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8549),
                             Name = "Cayenne SUV",
                             Price = 440000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6586)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8548),
+                            ViewNumber = 0L
                         },
                         new
                         {
                             Id = 4,
                             BrandForeignKey = 1,
-                            CarType = 2,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6600),
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8561),
                             Fuel = 4,
+                            ImgUrl = "img/Models/Q5 TFSI.png",
                             IsNew = true,
-                            MadeIn = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6602),
+                            MadeIn = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8561),
                             Name = "Q5 II TFSI e",
                             Price = 600000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6601)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8561),
+                            ViewNumber = 0L
                         },
                         new
                         {
                             Id = 5,
                             BrandForeignKey = 6,
-                            CarType = 0,
-                            CreatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6613),
+                            CarType = 1,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8568),
                             Fuel = 1,
+                            ImgUrl = "img/Models/actros.png",
                             IsNew = false,
-                            MadeIn = new DateTime(2017, 11, 27, 16, 9, 37, 355, DateTimeKind.Local).AddTicks(6615),
+                            MadeIn = new DateTime(2017, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8569),
                             Name = "Actros",
                             Price = 400000.0,
-                            UpdatedAt = new DateTime(2022, 11, 27, 15, 9, 37, 355, DateTimeKind.Utc).AddTicks(6614)
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8568),
+                            ViewNumber = 0L
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BrandForeignKey = 3,
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8578),
+                            Fuel = 4,
+                            ImgUrl = "img/Models/500.png",
+                            IsNew = false,
+                            MadeIn = new DateTime(2017, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8579),
+                            Name = "500",
+                            Price = 120000.0,
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8578),
+                            ViewNumber = 0L
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BrandForeignKey = 5,
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8587),
+                            Fuel = 4,
+                            ImgUrl = "https://www.jeep.pl/content/dam/jeep/crossmarket/model/wrangler-4xe-my22/overview/colorizer/sahara/jeep-wrangler-4xe-sahara-black-565x330.png",
+                            IsNew = true,
+                            MadeIn = new DateTime(2018, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8587),
+                            Name = "Wrangler",
+                            Price = 361000.0,
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8587),
+                            ViewNumber = 0L
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BrandForeignKey = 5,
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8595),
+                            Fuel = 4,
+                            ImgUrl = "https://www.jeep.pl/content/dam/jeep/crossmarket/compass-my-23/compass-ehybrid/overview/trim/trim-s/Jeep_Compass_eHybrid_S_SolidBlack.png",
+                            IsNew = true,
+                            MadeIn = new DateTime(2016, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8596),
+                            Name = "Compass",
+                            Price = 410000.0,
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8596),
+                            ViewNumber = 0L
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BrandForeignKey = 2,
+                            CarType = 3,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8604),
+                            Fuel = 1,
+                            ImgUrl = "https://www.robomarkets.pl/uploads/news/2019/may/bmw-m-motorsport-sponsorship-05-2019/images/car-dtm-final.png",
+                            IsNew = true,
+                            MadeIn = new DateTime(2021, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8605),
+                            Name = "M MOTORSPORT",
+                            Price = 710000.0,
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8605),
+                            ViewNumber = 0L
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BrandForeignKey = 3,
+                            CarType = 0,
+                            CreatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8614),
+                            Fuel = 4,
+                            ImgUrl = "https://www.fiat.pl/content/dam/fiat/com/my23/panda/colorizer/white/Panda-figurini-colorizer-Gelato-White-desktop-680x430.png",
+                            IsNew = false,
+                            MadeIn = new DateTime(2016, 11, 30, 15, 1, 12, 423, DateTimeKind.Local).AddTicks(8615),
+                            Name = "Panda",
+                            Price = 70000.0,
+                            UpdatedAt = new DateTime(2022, 11, 30, 14, 1, 12, 423, DateTimeKind.Utc).AddTicks(8614),
+                            ViewNumber = 0L
                         });
                 });
 
@@ -409,7 +583,6 @@ namespace CarSalon.Web.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

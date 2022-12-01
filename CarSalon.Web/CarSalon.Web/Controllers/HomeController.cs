@@ -16,33 +16,14 @@ namespace CarSalon.Web.Controllers
         public HomeController(ILogger<HomeController> logger, IShopViewModelProvider shopViewModelProvider, IModelRepository modelRepository, IBrandRepository brandRepository)
         {
             _shopViewModelProvider = shopViewModelProvider;
-            _modelRepository = modelRepository;
             _logger = logger;
+            _modelRepository = modelRepository;
             _brandRepository = brandRepository;
         }
 
         public IActionResult Index()
         {
             var viewmodel = _shopViewModelProvider.PreperIndexVm();
-            /*_modelRepository.Add(new Data.ModelEntity
-            {
-                Id = 6,
-                Name = "500",
-                MadeIn = DateTime.Now.AddYears(-5),
-                Price = 120000,
-                IsNew = false,
-                CarType = Data.CarType.Passenger,
-                Fuel = Data.Fuel.Hybrid,
-                BrandForeignKey = 3,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            });*/
-/*
-            _brandRepository.Add(new Data.BrandEntity
-            {
-                Id = 7,
-                Name = "Ferrari"
-            });*/
             return View(viewmodel);
         }
 

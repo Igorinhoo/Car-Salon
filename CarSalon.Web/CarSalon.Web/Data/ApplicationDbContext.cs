@@ -46,4 +46,4 @@ namespace CarSalon.Web.Data
             Model_EquipmentSeeder.Seed(builder);
         }
     }
-}
+    }

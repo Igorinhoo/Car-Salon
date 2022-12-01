@@ -1,4 +1,6 @@
-﻿namespace CarSalon.Web.Data
+﻿using System.Numerics;
+
+namespace CarSalon.Web.Data
 {
     public enum Fuel
     {
@@ -10,9 +12,9 @@
     }
     public enum CarType
     {
+        Passenger,
         Truck,
         Bus,
-        Passenger,
         Racing
     }
     public class ModelEntity
@@ -24,7 +26,8 @@
         public bool IsNew { get; set; }
         public Fuel Fuel { get; set; }
         public CarType CarType { get; set; } = CarType.Passenger;
-
+        public string ImgUrl { get; set; }
+        public long ViewNumber { get; set; } 
         public BrandEntity Brand { get; set; }
         public int BrandForeignKey { get; set; }
 
@@ -36,6 +39,7 @@
         {
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
+            ViewNumber = 0;
         }
     }
 }

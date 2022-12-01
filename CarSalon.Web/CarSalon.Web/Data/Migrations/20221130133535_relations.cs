@@ -4,7 +4,7 @@
 
 namespace CarSalon.Web.Migrations
 {
-    public partial class carrelation : Migration
+    public partial class relations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

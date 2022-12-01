@@ -1,9 +1,34 @@
-﻿
+﻿@model AdministrationStatisticsVm;
+@using CarSalon.Web.Data.Repositories;
+@inject IModelRepository repoModels
 @{
     ViewData["Title"] = "Charts";
 }
 
 <h1>Charts</h1>
 
-STatistics
+<div class="my-3">
+@foreach (var item in Model.Brands)
+{
+   
+    <div class="container">
+            <span><strong>@item.Name</strong> Has
+                @if (@repoModels.Count(item.Id) > 1)
+                {
+                    <span> @repoModels.Count(item.Id) Models</span>
+               }else{
+                    <span>@repoModels.Count(item.Id) Model</span>
+               }
 
+                 </span>
+    </div>
+}
+</div>
+
+@*<div class="my-5">
+    @foreach (var item in Model.Models)
+    {
+        <span>[@item.Name = @item.ViewNumber]</span>
+   
+    }  
+</div>*@

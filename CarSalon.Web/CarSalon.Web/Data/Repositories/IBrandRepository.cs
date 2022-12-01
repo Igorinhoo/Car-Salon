@@ -8,6 +8,8 @@ namespace CarSalon.Web.Data.Repositories
         int Count();
         BrandEntity One(int id);
         bool Add(BrandEntity entity);
+        BrandEntity Edit(BrandEntity entity);
+        bool Delete(int id);
 
     }
 
@@ -45,5 +47,26 @@ namespace CarSalon.Web.Data.Repositories
             return _dbContext.Brands.Count();
         }
 
+        public BrandEntity Edit(BrandEntity entity)
+        {
+            var dbEntity = One(entity.Id);
+
+            dbEntity.Name = entity.Name;
+            dbEntity.ImgUrl = entity.ImgUrl;
+            dbEntity.UpdatedAt = DateTime.UtcNow;
+
+            _dbContext.Brands.Update(dbEntity);
+            _dbContext.SaveChanges();
+
+            return dbEntity;
+        }
+
+        public bool Delete(int id)
+        {
+            var entity = One(id);
+            _dbContext.Brands.Remove(entity);
+
+            return _dbContext.SaveChanges() > 0;
+        }
     }
 }

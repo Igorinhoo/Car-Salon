@@ -6,5 +6,7 @@ namespace CarSalon.Web.Models
     {
 
         public ICollection<BrandDto> Brands { get; set; }
+
+        
     }
 }

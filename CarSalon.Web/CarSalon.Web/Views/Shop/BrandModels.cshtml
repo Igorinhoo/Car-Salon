@@ -1,0 +1,31 @@
+﻿@model ShopBrandModelsVm
+
+@{
+    ViewData["Title"] = "Mdoels";
+}
+
+<div class="container row text-center mx-4">
+    @foreach (var mod in Model.Models)
+    {
+        <div class="col">
+
+            <a asp-controller="Shop" asp-action="Details" asp-route-id="@mod.Id" style=" text-decoration:none">
+                <div class="container" style="width:480px">
+                    @if (mod.ImgUrl.Length > 30)
+                    {
+                        <img src="@mod.ImgUrl" style="height:280px; width:480px;" />
+                    }
+                    else
+                    {
+                        <img src="/@mod.ImgUrl" style="height:280px; width:480px;" />
+
+                    }
+
+                    <span>
+                        @mod.Name
+                    </span>
+                </div>
+            </a>
+        </div>
+    }
+</div>

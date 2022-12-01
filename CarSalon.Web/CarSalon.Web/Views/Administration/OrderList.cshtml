@@ -1,0 +1,65 @@
+﻿@model AdministrationOrderListVm
+@{
+    ViewData["Title"] = "Main";
+}
+
+
+<div class="container text-center">
+    <h1><span>Order list<i class="pt-1">@Model.OrderNumber</i></span></h1>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Price</th>
+                <th scope="col">Condition</th>
+                <th scope="col">Car type</th>
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">Email</th>
+                <th scope="col">Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Orders)
+            {
+                <tr id="@item.Id">
+                    <th scope="row">@item.Id</th>
+                    @if(@item.Surname == null){
+                        <td colspan="2">@item.Name</td>
+                       
+                    }else{
+                        <td>@item.Name</td>
+                        <td> @item.Surname</td>
+
+                    }
+                    <td> @item.Price.ToString("C")</td>
+                    @if (item.IsNew)
+                    {
+                        <td>New</td>
+                    }
+                    else
+                    {
+                        <td>Used</td>
+                    }
+                    <td> @item.CarType</td>
+                    <td> @item.PhoneNumber</td>
+                    @if (item.Email != null)
+                    {
+                        <td> @item.Email</td>
+                    }else{
+                        <td> Not added</td>
+                    }
+
+                    <td>
+                        <input type="checkbox" name="@item.Id" id="@item.Id"/>
+                    </td>
+                 </tr>
+            }    
+        </tbody>
+    </table>
+</div>
+

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarSalon.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221125185823_car models-equipment")]
-    partial class carmodelsequipment
+    [Migration("20221130133424_car equipment modelequipment")]
+    partial class carequipmentmodelequipment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,10 @@ namespace CarSalon.Web.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -61,7 +65,7 @@ namespace CarSalon.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EquipmentEntity");
+                    b.ToTable("Equipment");
                 });
 
             modelBuilder.Entity("CarSalon.Web.Data.Model_EquipmentEntity", b =>
@@ -110,6 +114,10 @@ namespace CarSalon.Web.Migrations
                     b.Property<int>("Fuel")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsNew")
                         .HasColumnType("bit");
 
@@ -125,6 +133,9 @@ namespace CarSalon.Web.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("ViewNumber")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

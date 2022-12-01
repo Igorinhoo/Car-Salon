@@ -11,27 +11,27 @@ namespace CarSalon.Web.Services
 
     public class DetailsViewModelProvider : IDetailsViewModelProvider
     {
-        private readonly IEquipmentRepository _equipmentRepository;
+        private readonly IModelEquipmentRepository _modelEquipmentRepository;
         private readonly IModelRepository _modelRepository;
 
-        public DetailsViewModelProvider(IEquipmentRepository equipmentRepository, IModelRepository modelRepository)
+        public DetailsViewModelProvider(IModelEquipmentRepository equipmentRepository, IModelRepository modelRepository)
         {
-            _equipmentRepository = equipmentRepository;
+            _modelEquipmentRepository = equipmentRepository;
             _modelRepository = modelRepository;
         }
 
         public ShopDetailsVm PreperIndexVm(int Id)
         {
-            var equip = _equipmentRepository
-                .All(Id)
+            var equip = _modelEquipmentRepository
+                .AllForModel(Id)
                 .Select(n => new EquipmentDto(n))
                 .ToList();
 
-            var mod = _modelRepository.All().Select(n => new ModelDto(n)).ToList();
+            var mod = new ModelDto( _modelRepository.One(Id));
 
 
 
-            return new ShopDetailsVm(){ Equipmentes = equip};
+            return new ShopDetailsVm() { Equipmentes = equip, Models = mod };
         }
     }
 }

@@ -3,7 +3,20 @@
     ViewData["Title"] = "Main";
 }
 
-<h1>Main</h1>
+<main class="text-center">
+    <a asp-controller="Administration" asp-action="OrderList" class="btn btn-primary my-4 mx-4">
+        Go to Orders
+    </a>
 
-Main Administration
+    <a asp-controller="Administration" asp-action="AddView" class="btn btn-primary my-4 mx-4">
+         Go to Adding
+    </a>
 
+    <a asp-controller="Administration" asp-action="AllThings" class="btn btn-primary my-4 mx-4">
+        Go to List of Everything
+    </a>
+
+    <a asp-controller="Administration" asp-action="Statistics" class="btn btn-primary my-4 mx-4">
+        Go to Statistics
+    </a>
+</main>

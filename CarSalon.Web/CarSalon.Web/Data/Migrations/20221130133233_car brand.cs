@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarSalon.Web.Migrations
 {
-    public partial class carbrands : Migration
+    public partial class carbrand : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,12 +55,26 @@ namespace CarSalon.Web.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Brands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EquipmentEntity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EquipmentEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,7 +193,10 @@ namespace CarSalon.Web.Migrations
                     MadeIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     IsNew = table.Column<bool>(type: "bit", nullable: false),
+                    Fuel = table.Column<int>(type: "int", nullable: false),
                     CarType = table.Column<int>(type: "int", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ViewNumber = table.Column<long>(type: "bigint", nullable: false),
                     BrandId = table.Column<int>(type: "int", nullable: false),
                     BrandForeignKey = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -197,20 +214,25 @@ namespace CarSalon.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EquipmentEntity",
+                name: "Model_EquipmentEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DoorsNumber = table.Column<int>(type: "int", nullable: false),
                     ModelId = table.Column<int>(type: "int", nullable: false),
-                    ModelForeignKey = table.Column<int>(type: "int", nullable: false)
+                    EquipmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EquipmentEntity", x => x.Id);
+                    table.PrimaryKey("PK_Model_EquipmentEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EquipmentEntity_ModelEntity_ModelId",
+                        name: "FK_Model_EquipmentEntity_EquipmentEntity_EquipmentId",
+                        column: x => x.EquipmentId,
+                        principalTable: "EquipmentEntity",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Model_EquipmentEntity_ModelEntity_ModelId",
                         column: x => x.ModelId,
                         principalTable: "ModelEntity",
                         principalColumn: "Id",
@@ -257,8 +279,13 @@ namespace CarSalon.Web.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EquipmentEntity_ModelId",
-                table: "EquipmentEntity",
+                name: "IX_Model_EquipmentEntity_EquipmentId",
+                table: "Model_EquipmentEntity",
+                column: "EquipmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Model_EquipmentEntity_ModelId",
+                table: "Model_EquipmentEntity",
                 column: "ModelId");
 
             migrationBuilder.CreateIndex(
@@ -285,13 +312,16 @@ namespace CarSalon.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EquipmentEntity");
+                name: "Model_EquipmentEntity");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "EquipmentEntity");
 
             migrationBuilder.DropTable(
                 name: "ModelEntity");

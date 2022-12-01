@@ -1,35 +1,70 @@
-﻿@using CarSalon.Web.Data
-@model ModelEntity
-@using CarSalon.Web.Data.Repositories
-@inject IModelEquipmentRepository equRep
+﻿@model ShopDetailsVm
+
 
 @{
-    ViewData["Title"] = "Strona details";
+    ViewData["Title"] = "Details Site";
 }
-@*
-@foreach(var item in Model.Equipmentes){
-    @item.Name
-}*@
 
-@Model.Brand
-@Model.Name
-@Model.Fuel
-@Model.Price
-@Model.CarType
-@Model.IsNew
-@Model.ModelEquipments  
+@*@equ.UpdateViewNumber(Model.Id)*@
 
-@foreach (var item in @equRep.AllForModel(Model.Id))
-{
-    @item.Name   
-}
-<br/>
-@Model.MadeIn
-<br />
-@foreach (var mode in @equRep.All())
-{ 
-    @mode.EquipmentId
-    
-    <br />
 
-}
+<div class="row my-5 mx-3">
+    <div class="col col-md-4" style="text-align:center">
+        @if (Model.Models.ImgUrl.Length > 30)
+        {
+            <img style="height:230px; width:420px; " src="@Model.Models.ImgUrl" />
+        }
+        else{
+            <img style="height:260px; width:460px; " src="/@Model.Models.ImgUrl" />
+
+        }
+    </div>
+
+    <div class="container col col-md-8">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                  <th scope="row">Name</th>
+                    <td>@Model.Models.Name</td>
+                </tr>
+                <tr>
+                    <th scope="row">Condition</th>
+                    @if (@Model.Models.IsNew)
+                    {
+                        <td>New</td>
+                    }
+                    else
+                    {
+                        <td>Used</td>
+                    }
+                </tr>
+                <tr>
+                  <th scope="row">Car type</th>
+                    <td>@Model.Models.CarType</td>
+                </tr>
+                <tr>
+                    <th scope="row">Price</th>
+                    <td>@Model.Models.Price.ToString("C")</td>
+                </tr>
+                <tr>
+                    <th scope="row">Fuel</th>
+                    <td>@Model.Models.Fuel</td>
+                </tr>
+                <tr>
+                    <th scope="row">Made date</th>
+                    <td>@Model.Models.MadeIn.Year</td>
+                </tr>
+                <tr>
+                    <th scope="row">Equipments</th>
+                    <td>
+                        @foreach (var item in Model.Equipmentes)
+                        {
+                            <span> @item.Name,   </span>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

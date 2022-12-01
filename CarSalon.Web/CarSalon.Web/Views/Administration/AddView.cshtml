@@ -1,0 +1,152 @@
+﻿@model AdministratioAddVm
+@using CarSalon.Web.Data
+
+@{
+    ViewData["Title"] = "Add Site";
+}
+<div class="text-center ">
+    <button id="btnBra" class="button-63 dropbtn my-3"><h2>Add Brand</h2></button>
+</div>
+<form asp-action="AddBrand" id="formBra" class="container d-none" method="post">
+    
+    <div class="row g-2">
+        <div class="col textOnInput col-md-6">
+            <label>Name</label>
+            <input asp-for="Brand.Name" id="firstName" type="text" class="form-control" placeholder="Name" aria-label="Name ">
+        </div>
+       
+            <div class="textOnInput col-md-4">
+                <label>Img Url</label>
+                <input asp-for="Brand.ImgUrl" class="form-control" type="text">
+            </div>
+      
+        <button type="submit" class="btn btn-primary col-md-2">
+            Add Brand
+        </button>
+    </div>
+</form>
+<hr />
+
+<div class="text-center ">
+    <button id="btnMod" class="button-63 dropbtn text-center my-3"><h2>Add Model</h2></button>
+</div>
+<form asp-action="AddModel" id="formMod" method="post" class="container d-none">
+    <div class="row g-2">
+        <div class="col textOnInput col-md-6">
+            <label>Name</label>
+            <input asp-for="Model.Name" id="firstName" type="text" class="form-control" placeholder="Name" aria-label="Name ">
+        </div>
+        <div class="col textOnInput col-md-6">
+            <label>Price</label>
+            <input asp-for="Model.Price" type="text" class="form-control" placeholder="Price" aria-label="Price">
+        </div>
+    </div>
+    <div class="row g-2  my-3">
+        <div class="col textOnInput col-md-6">
+            <label>Fuel</label>
+            <select class="form-select" aria-label="Default select example" asp-for="Model.Fuel" asp-items="Html.GetEnumSelectList<Fuel>()">
+            </select>
+        </div>
+        <div class="col textOnInput col-md-6">
+            <label>Car type</label>
+            <select class="form-select" aria-label="Default select example" asp-for="Model.CarType" asp-items="Html.GetEnumSelectList<CarType>()">
+            </select>
+        </div>
+    </div>
+    
+    <div class="col textOnInput">
+        <label>Made in</label>
+        <input asp-for="Model.MadeIn" type="date" class="form-control">
+    </div>
+
+    <div class="form-check col d-flex flex-row bd-highlight mt-2 py-2 border border-secondary textOnInput">
+        <label>Condition</label>
+        <div class="mx-5">
+            <input asp-for="Model.IsNew" class="form-check-input" type="radio" value="True" id="New" checked>
+            <label class="form-check-label no" for="New">
+                New
+            </label>
+        </div>
+        <div class="mx-5">
+            <input asp-for="Model.IsNew" class="form-check-input" type="radio" value="False" id="Used">
+            <label class="form-check-label no" for="Used">
+                Used
+            </label>
+        </div>
+    </div>
+
+    <div class="md-form textOnInput my-3 g-2">
+        <label>Brand</label>
+        <select class="form-select my-3" aria-label="Default select example" asp-for="Model.BrandForeignKey" >
+            @foreach (var item in Model.BrandsList)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+
+
+    <div class="row">
+        <div class="textOnInput">
+            <label>Img Url</label>
+            <input asp-for="Model.ImgUrl" class="form-control" type="text">
+        </div>
+    </div>
+
+    <div class="text-center my-3">
+        <button type="submit" class="btn btn-primary">
+            Add Model
+        </button>
+    </div>
+</form>
+
+<hr/>
+
+    <div class="text-center ">
+    <button id="btnEqu" class="button-63 dropbtn text-center my-3"><h2>Add Equipment</h2></button>
+</div>
+<form asp-action="AddEquipment" id="formEqu" class="container d-none" method="post">
+    <div class="row g-2">
+        <div class="col textOnInput col-md-10">
+            <label>Name</label>
+            <input asp-for="Equipment.Name" id="firstName" type="text" class="form-control" placeholder="Name" aria-label="Name ">
+        </div>
+        <button type="submit" class="btn btn-primary col-md-2">
+            Add Equipment
+        </button>
+    </div>
+
+</form>
+
+<hr/>
+<div class="text-center ">
+    <button id="btn" class="button-63 text-center my-3" style="margin-bottom:50px"><h2>Add Equipment to Model</h2></button>
+</div>
+<form asp-action="AddModelEquipmentRelation" id="form_eqmo" class="container d-none mb-5" method="post">
+   
+    <div id="myDropdown" class="row g-2 ">
+        <div class="col textOnInput col-md-6">
+            <select class="form-select my-3" aria-label="Default select example" asp-for="Model_Equipment.ModelId">
+                @foreach (var item in Model.ModelsList)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col textOnInput col-md-6">
+            <select class="form-select my-3" aria-label="Default select example" asp-for="Model_Equipment.EquipmentId">
+                @foreach (var item in Model.EquipmentsList)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="text-center"> 
+            <button type="submit" class="btn btn-primary col-md-2 mb-4" >
+                Add Equipment to Model
+            </button>
+        </div>
+    </div>
+
+</form>
+

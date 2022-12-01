@@ -1,0 +1,183 @@
+﻿@using CarSalon.Web.Data
+@using CarSalon.Web.Data.Repositories
+@model AdministrationUpdateVm;
+@inject IModelRepository modelRepo
+@inject IEquipmentRepository equipRepo
+
+
+@{
+    ViewData["Title"] = "All";
+}
+
+<div class="text-center">
+    <button role="button" id="btnBra" class="button-63 my-3"><span>Brands</span><i>@Model.BrandCount</i></button>
+</div>
+<div id="formBra" class="d-none">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Img Url</th>
+                <th scope="col">Edit</th>
+         
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BrandsList)
+            {
+                <form asp-action="UpdateBrand" method="post" id="@item.Id">
+                    <tr id="@item.Id">
+                        <th scope="row"><input asp-for="Brand.Id" type="hidden" value="@item.Id"/>@item.Id</th>
+                        <td> <input asp-for="Brand.Name" value="@item.Name"/> </td>
+                        <td> <input asp-for="Brand.ImgUrl" value="@item.ImgUrl" /> </td>
+                        <td> <button class="btn btn-primary" type="submit">Save</button></td>
+                    </tr>
+                </form>
+            }
+        </tbody>
+    </table>
+    <form asp-action="DeleteBrand" method="post" class="text-center">
+        <input asp-for="BrandDel.Id" type="number"/>
+        <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+</div>
+<hr/>
+
+<div class="text-center ">
+    <button id="btnMod" class="button-63 text-center my-3"><span>Models</span><i>@Model.ModelCount</i></button>
+</div>
+<div id="formMod" class="d-none">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Made in</th>
+                <th scope="col">Price</th>
+                <th scope="col">Fuel</th>
+                <th scope="col">Car type</th>
+                <th scope="col">Img Url</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ModelsList)
+            {
+            <form asp-action="UpdateModel" method="post" id="@item.Id">
+                <tr id="@item.Id">
+                    <th scope="row"><input asp-for="Model.Id" type="hidden" value="@item.Id" />@item.Id</th>
+                    <td><input asp-for="Model.Name" value="@item.Name" /> </td>
+                    <td><input asp-for="Model.MadeIn" /><span>@item.MadeIn.ToShortDateString() </span> </td>
+                    <td><input asp-for="Model.Price" value="@item.Price" /> </td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example" asp-for="Model.Fuel" asp-items="Html.GetEnumSelectList<Fuel>()">
+                            
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example" asp-for="Model.CarType" asp-items="Html.GetEnumSelectList<CarType>()">
+                        </select>
+                    </td>
+                    <td><input asp-for="Model.ImgUrl" value="@item.ImgUrl" /> </td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example" asp-for="Model.BrandForeignKey">
+                            @foreach (var brands in Model.BrandsList)
+                            {
+                                @if(modelRepo.One(item.Id).BrandForeignKey == brands.Id){
+                                    <option selected value="@brands.Id">@brands.Name</option>
+
+                                }else{
+                                    <option value="@brands.Id">@brands.Name</option>
+                                   }
+                            }
+                        </select>
+                   
+                    </td>
+                    <td> <button class="btn btn-primary" type="submit">Save</button></td>
+                </tr>
+            </form>
+            }
+        </tbody>
+    </table>
+    <form asp-action="DeleteModel" method="post" class="text-center">
+        <input asp-for="ModelDel.Id" type="number" />
+        <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+</div>
+<hr />
+
+<div class="text-center ">
+    <button id="btnEqu" class="button-63 text-center my-3"><span>Equipment</span><i>@Model.EquipmentCount</i></button>
+</div>
+<div id="formEqu" class="d-none">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th class="text-right" scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model.EquipmentsList)
+            {
+                <form asp-action="UpdateEquipment" method="post" id="@item.Id">
+                    <tr id="@item.Id">
+                        <th scope="row"><input asp-for="Equipment.Id" type="hidden" value="@item.Id" />@item.Id</th>
+                        <td><input asp-for="Equipment.Name" value="@item.Name" /> </td>
+
+                        <td> <button class="btn btn-primary" type="submit">Save</button></td>
+                    </tr>
+                </form>
+            }
+        </tbody>
+    </table>
+    <form asp-action="DeleteEquipment" method="post" class="text-center">
+        <input asp-for="EquipmentDel.Id" type="number"/>
+        <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+</div>
+<hr class="bg-dark"/>
+
+
+
+
+<div class="text-center ">
+    <button id="btn" class="button-63 text-center my-3 mb-5"><span>Models and Equipments</span><i>@Model.Model_EquipmentCount</i></button>
+</div>
+<div id="form_eqmo" class="d-none">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th scope="col">Id</th>
+                <th scope="col">IdModel</th>
+                <th scope="col">IdEquipment</th>
+                <th class="text-right" scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model.model_EquipmentList)
+                {
+                    <form asp-action="UpdateModelEquipmentRelation" method="post">
+                        <tr id="@item.Id">
+                            <th scope="row"><input asp-for="Model_Equipment.Id" type="hidden" value="@item.Id" />@item.Id</th>
+                            
+                            <td><input asp-for="Model_Equipment.ModelId" value="@item.ModelId" /></td>
+                            <td><input asp-for="Model_Equipment.EquipmentId" value="@item.EquipmentId" /></td>
+                            <td> <button class="btn btn-primary" type="submit">Save</button></td>
+                        </tr>
+                    </form>
+                }
+        </tbody>
+    </table>
+    <form asp-action="DeleteModelEquipmentRelation" method="post" class="text-center mb-5">
+        <input asp-for="Model_EquipmentDel.Id" type="number" />
+        <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+</div>

@@ -9,26 +9,37 @@ namespace CarSalon.Web.Controllers
     public class ShopController : Controller
     {
         private readonly IDetailsViewModelProvider _detailsViewModelProvider;
+        private readonly IModelsViewModelProvider _modelsViewModelProvider;
+        private readonly IBrandRepository _brandRepository;
         private readonly IModelRepository _modelRepository;
         private readonly IOrderRepository _orderRepository;
 
 
-        public ShopController(IDetailsViewModelProvider detailsViewModelProvider, IModelRepository modelRepository, IOrderRepository orderRepo)
+        public ShopController(IDetailsViewModelProvider detailsViewModelProvider, IModelsViewModelProvider modelsViewModelProvider ,IBrandRepository brandRepository, IModelRepository modelRepository, IOrderRepository orderRepo)
         {
-            _detailsViewModelProvider = detailsViewModelProvider;
+                 _detailsViewModelProvider = detailsViewModelProvider;
+                 _modelsViewModelProvider = modelsViewModelProvider;
+            _brandRepository = brandRepository;
             _modelRepository = modelRepository;
             _orderRepository = orderRepo;
         }
         public IActionResult Order()
         {         
             return View();
+        
+        }
+
+        public IActionResult BrandModels(int id)
+        {
+            var viewmodel = _modelsViewModelProvider.PreperIndexVm(id);
+            return View(viewmodel);
         }
 
         public IActionResult Details(int id)
         {
-            var viewmodel = _modelRepository.One(id);
-            /*var vm = _detailsViewModelProvider.PreperIndexVm(id);*/
-            return View(viewmodel);
+           
+            var vm = _detailsViewModelProvider.PreperIndexVm(id);
+            return View(vm);
            
         }
 
